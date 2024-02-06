@@ -12,10 +12,13 @@ import (
 func main() {
 	// Main Router
 	r := chi.NewRouter()
-	r.Use(middlewares.AuthMiddleware)
+	auth := r.Group(nil)
+	auth.Use(middlewares.AuthMiddleware)
 
 	// Handler
-	r.Post("/api/*", handlers.ForwardingV1)
+	r.Post("/api/signUp", handlers.ForwardingV1)
+	r.Post("/api/logIn", handlers.ForwardingV1)
+	auth.Post("/api/*", handlers.ForwardingV1)
 
 	log.Println("Serving API Gateway on port :3000")
 	err := http.ListenAndServe(":3000", r)

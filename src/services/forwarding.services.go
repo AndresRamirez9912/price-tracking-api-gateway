@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"net/url"
 	"price-tracking-api-gateway/src/utils"
-	"strings"
 )
 
 func GetTargetRoute(r *http.Request) (*url.URL, error) {
@@ -17,10 +16,9 @@ func GetTargetRoute(r *http.Request) (*url.URL, error) {
 	}
 
 	// Determine the desired host based on the received path
-	_, path, found := strings.Cut(r.URL.Path, "/api")
-	if !found {
-		log.Println("Error cutting the received path")
-		return nil, errors.New("Error cutting the received path")
+	path, err := utils.GetEndpoint(r)
+	if err != nil {
+		return nil, err
 	}
 
 	host, ok := enpointList[path]
