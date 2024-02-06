@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"price-tracking-api-gateway/src/handlers"
+	"price-tracking-api-gateway/src/middlewares"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -11,6 +12,7 @@ import (
 func main() {
 	// Main Router
 	r := chi.NewRouter()
+	r.Use(middlewares.AuthMiddleware)
 
 	// Handler
 	r.Post("/api/*", handlers.ForwardingV1)
