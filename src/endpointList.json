@@ -1,0 +1,22 @@
+{
+  "/signUp": "http://localhost:3001",
+  "/logIn": "http://localhost:3001",
+  "/verifyUser": "http://localhost:3001",
+  "/changePassword": "http://localhost:3001",
+  "/reSendVerificationCode": "http://localhost:3001",
+  "/signOut": "http://localhost:3001",
+  "/set2FA": "http://localhost:3001",
+  "/associateToken": "http://localhost:3001",
+  "/verifyToken": "http://localhost:3001",
+  "/respondChallenge": "http://localhost:3001",
+  "/forgotPassword": "http://localhost:3001",
+  "/confirmForgotPassword": "http://localhost:3001",
+
+  "/scraping": "http://localhost:3002",
+
+  "/AddProduct": "http://localhost:3003",
+  "/RemoveProduct": "http://localhost:3003",
+  "/AddUser": "http://localhost:3003",
+  "/DeleteUser": "http://localhost:3003",
+  "/ListUserProducts": "http://localhost:3003"
+}
