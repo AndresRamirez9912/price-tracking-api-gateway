@@ -80,3 +80,17 @@ func VerifyUserByJWT(accessToken string) (*models.GetUserResponse, error) {
 
 	return userData, nil
 }
+
+func GetUserByJWTResponse(response *models.GetUserResponse) *models.User {
+	user := &models.User{}
+	userAttributes := make(map[string]string)
+
+	for _, v := range response.UserAttributes {
+		userAttributes[v.Name] = v.Value
+	}
+
+	user.Email = userAttributes["email"]
+	user.Id = userAttributes["sub"]
+	user.UserName = userAttributes["name"]
+	return user
+}

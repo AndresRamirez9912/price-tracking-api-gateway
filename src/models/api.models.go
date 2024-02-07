@@ -22,3 +22,9 @@ type GetUserResponse struct {
 	Username           string      `json:"Username"`
 	GeneralResponse
 }
+
+type User struct {
+	Id       string `json:"id"`
+	Email    string `json:"email"`
+	UserName string `json:"userName"`
+}
