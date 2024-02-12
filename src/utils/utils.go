@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
+	"price-tracking-api-gateway/src/constants"
 	"price-tracking-api-gateway/src/models"
 	"strings"
 )
@@ -55,7 +57,9 @@ func VerifyUserByJWT(accessToken string) (*models.GetUserResponse, error) {
 		log.Println("Error marshalling the body request for user verifying", err)
 		return nil, err
 	}
-	req, err := http.NewRequest("POST", "http://price-tracking-auth:3001/api/getUser", bytes.NewBuffer(jsonBody))
+	// authURL = http://price-tracking-auth:3001/api/getUser
+	authURL := fmt.Sprintf("%s://%s/api/getUser", os.Getenv(constants.AUTH_SCHEME), os.Getenv(constants.AUTH_HOST))
+	req, err := http.NewRequest(http.MethodPost, authURL, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		log.Println("Error creating the HTTP request for user verifying", err)
 		return nil, err
@@ -89,8 +93,8 @@ func GetUserByJWTResponse(response *models.GetUserResponse) *models.User {
 		userAttributes[v.Name] = v.Value
 	}
 
-	user.Email = userAttributes["email"]
-	user.Id = userAttributes["sub"]
-	user.UserName = userAttributes["name"]
+	user.Email = userAttributes[constants.USER_EMAIL_ATTRIBUTE]
+	user.Id = userAttributes[constants.USER_SUB_ATTRIBUTE]
+	user.UserName = userAttributes[constants.USER_NAME_ATTRIBUTE]
 	return user
 }

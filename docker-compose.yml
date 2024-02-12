@@ -21,6 +21,10 @@ services:
       - "3000:3000"
     networks:
       - price-tracking-network
+    environment:
+      - PORT=${PORT}
+      - AUTH_SCHEME=${AUTH_SCHEME}
+      - AUTH_HOST=${AUTH_HOST}
 
 
 networks:

@@ -36,7 +36,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		}
 
 		user := utils.GetUserByJWTResponse(userData)
-		ctx := context.WithValue(r.Context(), "user", user)
+		ctx := context.WithValue(r.Context(), constants.USER_CONTEXT, user)
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
