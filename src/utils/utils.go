@@ -58,7 +58,7 @@ func VerifyUserByJWT(accessToken string) (*models.GetUserResponse, error) {
 		return nil, err
 	}
 	// authURL = http://price-tracking-auth:3001/api/getUser
-	authURL := fmt.Sprintf("%s://%s/api/getUser", os.Getenv(constants.AUTH_SCHEME), os.Getenv(constants.AUTH_HOST))
+	authURL := fmt.Sprintf("%s://%s/api/getUser", os.Getenv(constants.SCHEME), os.Getenv(constants.AUTH_HOST))
 	req, err := http.NewRequest(http.MethodPost, authURL, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		log.Println("Error creating the HTTP request for user verifying", err)

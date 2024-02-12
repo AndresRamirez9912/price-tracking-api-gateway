@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
+	"price-tracking-api-gateway/src/constants"
 	"price-tracking-api-gateway/src/utils"
 )
 
@@ -27,7 +29,7 @@ func GetTargetRoute(r *http.Request) (*url.URL, error) {
 		return nil, errors.New("Error Getting the host from the endpoints list")
 	}
 
-	target := host + path
+	target := os.Getenv(constants.SCHEME) + "://" + os.Getenv(host) + path
 	targetURL, err := url.Parse(target)
 	if err != nil {
 		log.Println("Error Parsing the target url", err)

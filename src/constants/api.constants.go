@@ -10,6 +10,6 @@ const (
 	PORT                 = "PORT"
 	PROXY_ERROR          = "Proxy Error: "
 	USER_CONTEXT         = "user"
-	AUTH_SCHEME          = "AUTH_SCHEME"
+	SCHEME               = "SCHEME"
 	AUTH_HOST            = "AUTH_HOST"
 )
