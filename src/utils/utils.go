@@ -55,7 +55,7 @@ func VerifyUserByJWT(accessToken string) (*models.GetUserResponse, error) {
 		log.Println("Error marshalling the body request for user verifying", err)
 		return nil, err
 	}
-	req, err := http.NewRequest("POST", "http://localhost:3001/api/getUser", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "http://price-tracking-auth:3001/api/getUser", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		log.Println("Error creating the HTTP request for user verifying", err)
 		return nil, err
@@ -74,7 +74,7 @@ func VerifyUserByJWT(accessToken string) (*models.GetUserResponse, error) {
 	userData := &models.GetUserResponse{}
 	err = GetBody(response.Body, userData)
 	if err != nil {
-		log.Println("Error Getting the Body response for user verifying")
+		log.Println("Error Getting the Body response for user verifying", err)
 		return nil, err
 	}
 
