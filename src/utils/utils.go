@@ -42,7 +42,7 @@ func GetEndpoint(r *http.Request) (string, error) {
 
 func GetBody(body io.ReadCloser, receiver any) error {
 	err := json.NewDecoder(body).Decode(receiver)
-	if err != nil {
+	if err != nil && err != io.EOF {
 		log.Println("Error decoding the Body of the request", err)
 		return err
 	}
@@ -89,7 +89,7 @@ func GetUserByJWTResponse(response *models.GetUserResponse) *models.User {
 	user := &models.User{}
 	userAttributes := make(map[string]string)
 
-	for _, v := range response.UserAttributes {
+	for _, v := range response.Response.UserAttributes {
 		userAttributes[v.Name] = v.Value
 	}
 

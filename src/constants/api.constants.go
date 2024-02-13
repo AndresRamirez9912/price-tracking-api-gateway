@@ -12,4 +12,5 @@ const (
 	USER_CONTEXT         = "user"
 	SCHEME               = "SCHEME"
 	AUTH_HOST            = "AUTH_HOST"
+	CONTENT_LENGTH       = "Content-Length"
 )

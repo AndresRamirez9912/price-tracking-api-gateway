@@ -4,7 +4,7 @@ type GetUserRequest struct {
 	AccessToken string `json:"AccessToken"`
 }
 
-type GeneralResponse struct {
+type generalResponse struct {
 	Success      bool        `json:"success"`
 	Response     interface{} `json:"response"`
 	ErrorCode    int         `json:"errorCode"`
@@ -12,15 +12,17 @@ type GeneralResponse struct {
 }
 
 type GetUserResponse struct {
-	MFAOptions          interface{} `json:"MFAOptions"`
-	PreferredMfaSetting interface{} `json:"PreferredMfaSetting"`
-	UserAttributes      []struct {
-		Name  string `json:"Name"`
-		Value string `json:"Value"`
-	} `json:"UserAttributes"`
-	UserMFASettingList interface{} `json:"UserMFASettingList"`
-	Username           string      `json:"Username"`
-	GeneralResponse
+	Response struct {
+		MFAOptions          interface{} `json:"MFAOptions"`
+		PreferredMfaSetting interface{} `json:"PreferredMfaSetting"`
+		UserAttributes      []struct {
+			Name  string `json:"Name"`
+			Value string `json:"Value"`
+		} `json:"UserAttributes"`
+		UserMFASettingList interface{} `json:"UserMFASettingList"`
+		Username           string      `json:"Username"`
+	} `json:"response"`
+	generalResponse
 }
 
 type User struct {

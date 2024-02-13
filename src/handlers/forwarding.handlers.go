@@ -14,6 +14,14 @@ func ForwardingV1(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
+	// Add the User from the context to the request Body
+	user := r.Context().Value(constants.USER_CONTEXT)
+	if user != nil {
+		err = services.AddBodyElement(r, constants.USER_CONTEXT, user)
+		if err != nil {
+			return
+		}
+	}
 
 	// Forward the Request to the target
 	proxy := httputil.NewSingleHostReverseProxy(targetURL)
