@@ -63,8 +63,6 @@ func AddBodyElement(r *http.Request, elementName string, elementValue interface{
 		return err
 	}
 
-	log.Printf("user: %+v\n", body)
-
 	// Update the Closer with the new Body request
 	r.Body = io.NopCloser(bytes.NewBuffer(modifiedBody))
 	r.ContentLength = int64(len(modifiedBody))                              // Update parametter
