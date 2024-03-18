@@ -22,9 +22,9 @@ services:
     networks:
       - price-tracking-network
     environment:
-      - PORT=${PORT}
-      - SCHEME=${SCHEME}
-      - AUTH_HOST=${AUTH_HOST}
+      - PORT=:3000
+      - SCHEME=http
+      - AUTH_HOST=price-tracking-auth:3001
 
 networks:
   price-tracking-network:
