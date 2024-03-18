@@ -12,11 +12,14 @@ RUN GOOS=linux GOARCH=arm64 go build -o /go/bin/app
 # Start a new stage to create a smaller final image
 FROM alpine:latest
 
-# Copy the built binary from the previous stage
-COPY --from=builder /go/bin/app /usr/local/bin/app
+# Set the working directory to the directory containing the executable
+WORKDIR /usr/local/bin
+
+# Copy the built binary from the previous stage to my workdir
+COPY --from=builder /go/bin/app .
 
 # Copy the endpointList.json file into the final image
-COPY --from=builder /go/src/app/src/endpointList.json /usr/local/bin/src/endpointList.json
+COPY --from=builder /go/src/app/src/endpointList.json ./src/endpointList.json
 
 # Expose the port
 EXPOSE 3000
