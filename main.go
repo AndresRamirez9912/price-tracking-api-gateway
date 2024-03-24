@@ -18,8 +18,9 @@ func main() {
 	auth.Use(middlewares.AuthMiddleware)
 
 	// Handler
-	r.Post("/api/signUp", handlers.ForwardingV1)
+	r.Post("/api/AddUser", handlers.ForwardingV1)
 	r.Post("/api/logIn", handlers.ForwardingV1)
+	r.Post("/api/verifyUser", handlers.ForwardingV1)
 	auth.Post("/api/*", handlers.ForwardingV1)
 
 	log.Println("Serving API Gateway on port", os.Getenv(constants.PORT))

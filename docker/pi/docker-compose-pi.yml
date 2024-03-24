@@ -1,0 +1,22 @@
+version: '3.9'
+
+services: 
+  price-tracking-api-gateway:
+    build: 
+      context: ../../
+      dockerfile: docker/local/dockerfile-pi
+    image: price-tracking-api-gateway:pi
+    container_name: price-tracking-api-gateway
+    environment:
+      - PORT=:3000
+      - SCHEME=http
+      - AUTH_HOST=price-tracking-auth:3001
+    ports:
+      - "3000:3000"
+    networks:
+      - price-tracking-network
+
+networks:
+  price-tracking-network:
+    name: price-tracking-network
+
